@@ -1,0 +1,150 @@
+<%- include('../partials/_header.ejs') %>
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                    	<h4 class="card-title mb-4">Edit Child Organization</h4>
+                        <div class="form-validation">
+                            <form class="form-valide" action="/churches/<%= church._id %>" method="post" id="church_form">
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="name">Organization Name <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.name %>" type="text" class="form-control" id="name" name="name" placeholder="Organization name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="parent_organization">Parent Organization Name <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="parent_organization" name="parent_organization">
+                                            <option value="">Please select</option>
+											<% for ( var i = 0; i < organizations.length; i++ ) { %>
+												<% selected = organizations[i]._id.toString() == church.parent_organization._id.toString() ? 'selected' : '' %>
+                                            	<option <%= selected %> value="<%= organizations[i]._id %>"><%= organizations[i].name %></option>
+											<% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="address">Address <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.address %>" type="text" class="form-control" id="address" name="address" placeholder="Address">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="country">Country <span class="text-danger">*</span>
+                                    </label>
+									<% var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Côte d’Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor (Timor-Leste)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia, Federated States of", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "Spain", "Sri Lanka", "Sudan", "Sudan, South", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"] %>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="country" name="country">
+                                            <option value="">Please select</option>
+											<% for ( var i = 0; i < countries.length; i++ ) { %>
+                                        		<% selected = church.country == countries[i] ? 'selected' : '' %>
+                                            	<option <%= selected %> value="<%= countries[i] %>"><%= countries[i] %></option>
+											<% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="state">State <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.state %>" type="text" class="form-control" id="state" name="state" placeholder="Enter State">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="city">City <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.city %>" type="text" class="form-control" id="city" name="city" placeholder="Enter City">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="zipcode">Zip Code <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.zipcode %>" type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Enter Zip Code">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="email">Email <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.email %>" type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="email">Alternate Email <span class="text-danger"></span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.alt_email %>" type="text" class="form-control" id="email" name="alt_email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="mobile">Mobile <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.mobile %>" type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="alt_mobile">Alternate Mobile <span class="text-danger"></span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.alt_mobile %>" type="text" class="form-control" id="alt_mobile" name="alt_mobile" placeholder="Alternate Mobile">
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="timezone">Timezone <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="timezone" name="timezone">
+                                            <option value="">Please select</option>
+                                            <option value="html">HTML</option>
+                                            <option value="css">CSS</option>
+                                            <option value="javascript">JavaScript</option>
+                                            <option value="angular">Angular</option>
+                                            <option value="angular">React</option>
+                                            <option value="vuejs">Vue.js</option>
+                                            <option value="ruby">Ruby</option>
+                                            <option value="php">PHP</option>
+                                            <option value="asp">ASP.NET</option>
+                                            <option value="python">Python</option>
+                                            <option value="mysql">MySQL</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="website">Website
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input value="<%= church.website %>" type="text" class="form-control" id="website" name="website" placeholder="http://example.com">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-8 ml-auto">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<%- include('../partials/_footer.ejs') %>
+<script src="/plugins/validation/jquery.validate.min.js"></script>
+<script src="/plugins/validation/jquery.validate-init.js"></script>

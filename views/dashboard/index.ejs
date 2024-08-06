@@ -1,0 +1,90 @@
+<%- include('../partials/_header.ejs') %>
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card card-widget">
+                            <div class="card-body gradient-3">
+                                <div class="media">
+                                    <span class="card-widget__icon"><i class="sicon-home"></i></span>
+                                    <div class="media-body">
+                                        <h2 class="card-widget__title"><%= users_count %></h2>
+                                        <h5 class="card-widget__subtitle">Users</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="card card-widget">
+                            <div class="card-body gradient-4">
+                                <div class="media">
+                                    <span class="card-widget__icon"><i class="sicon-tag"></i></span>
+                                    <div class="media-body">
+                                        <h2 class="card-widget__title"><%= leaders_count %></h2>
+                                        <h5 class="card-widget__subtitle">Leaders</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-3">
+                        <div class="card card-widget">
+                            <div class="card-body gradient-9">
+                                <div class="media">
+                                    <span class="card-widget__icon"><i class="sicon-ghost"></i></span>
+                                    <div class="media-body">
+                                        <h2 class="card-widget__title"><%= members_count %></h2>
+                                        <h5 class="card-widget__subtitle">Members</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="card card-widget">
+                            <div class="card-body gradient-4">
+                                <div class="media">
+                                    <span class="card-widget__icon"><i class="sicon-emotsmile"></i></span>
+                                    <div class="media-body">
+                                        <h2 class="card-widget__title"><%= cp_count %></h2>
+                                        <h5 class="card-widget__subtitle">Content Providers</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Organizations Info</h4>
+                                <div id="morris-donut-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+<%- include('../partials/_footer.ejs') %>
+<script src="/plugins/raphael/raphael.min.js"></script>
+<script src="/plugins/morris/morris.min.js"></script>
+<script src="/js/dashboard/dashboard-1.js"></script>
+<script type="text/javascript">
+    // user_bars(<%#- JSON.stringify(bar_data) %>);
+    donut_chart(<%- JSON.stringify(chart_data) %>);
+</script>
